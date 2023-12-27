@@ -31,3 +31,24 @@ body {
 	background-color: var(--blue);
 	border-radius: 20px;
 }
+.input-border {
+	border: 1px solid var(--pink);
+}
+.form-check-input.role-selector {
+	appearance: none;
+	width: 20px; 
+	height: 20px; 
+	border: 2px solid var(--pink); 
+	border-radius: 4px;
+}
+
+.form-check-input.role-selector:checked {
+    background-color: var(--pink);
+}
+.verification-input {
+	width: 60px;
+	height: 60px;
+	font-size: 24px;
+	text-align: center;
+	margin: 0 5px;
+}

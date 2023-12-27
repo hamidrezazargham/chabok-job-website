@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
-    <!-- <link rel="stylesheet" href="css/all.min-free.css"> -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/all.min-free.css">
     <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
     <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
     <link rel="stylesheet" href="style.css">
@@ -23,16 +23,44 @@
                 <form>
                     <div class="form-group">
                         <label for="name">name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter name">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control input-border" id="name" placeholder="Enter name">
+                        </div>
                     </div>
+                    
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control input-border" id="email" placeholder="Enter email">
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter password">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control input-border" id="password" placeholder="Enter password">
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label for="role" class="mr-2 mt-2">Role</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input role-selector" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="user">
+                            <label class="form-check-label" for="inlineRadio1">user</label>
+                        </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input role-selector" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="employer">
+                            <label class="form-check-label" for="inlineRadio2">employer</label>
+                          </div>
+                    </div>                  
                     <div>
                         <div class="row rtl">
                             <!-- <div class="col-sm"><a href="">create an account</a></div> -->

@@ -19,35 +19,23 @@
     <div class="container-xl">
         <div class="col align-self-center">
             <div class="login-container">
-                <h2 class="text-center mb-4 login-page-text">sign in</h2>
+                <h2 class="text-center mb-4 login-page-text">Verification</h2>
                 <form>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <input type="email" class="form-control input-border" id="email" placeholder="Enter email">
+                    <div class="form-row justify-content-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control verification-input" maxlength="1" id="digit1" placeholder="0" , oninput="moveToPreviousInput(this, null ,'digit2' )">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control verification-input" maxlength="1" id="digit2" placeholder="0" , oninput="moveToPreviousInput(this, 'digit1' ,'digit3')">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control verification-input" maxlength="1" id="digit3" placeholder="0" , oninput="moveToPreviousInput(this, 'digit2' ,'digit4')">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control verification-input" maxlength="1" id="digit4" placeholder="0" , oninput="moveToPreviousInput(this, 'digit3', null)">
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            </div>
-                            <input type="password" class="form-control input-border" id="password" placeholder="Enter password">
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="row">
-                            <div class="col-6"><a href="signup.html">create an account</a></div>
-                            <div class="col-6"><button type="submit" class="btn btn-primary btn-block btn-submit">Sign In</button></div>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-submit">Verify</button>
                 </form>
             </div>
         </div>
