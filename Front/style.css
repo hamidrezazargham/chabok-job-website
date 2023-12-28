@@ -52,3 +52,8 @@ body {
 	text-align: center;
 	margin: 0 5px;
 }
+
+.header-top {
+    background-color: #ffffff;
+    border-bottom: solid #76767641 1px;
+}
