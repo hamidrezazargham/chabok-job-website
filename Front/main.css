@@ -83,7 +83,7 @@
 
 .main-container{
     background-color: var(--gray);
-    height: 1080px;
+    height: 1580px;
     max-width: 1883px;
 
 }
@@ -174,87 +174,54 @@
     width: 140px;
 }
 
-
-
-
-
-
-
-
-
-
-
-/* .carousel-item {
-    height: 450px;
+.job-app-shadow {
+    width: 1750px;
+    height: 700px;
+    background-color: #d8d8d844;
+    border-radius: 20px;
+    margin-left: 50px;
+}
+.job-app-container{
+    margin-top: 100px;
 }
 
-.carousel-item-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    text-align: center;
+.job-app-text{
+    margin-left: 350px;
+    font-size: 60px;
+    font-weight: 600;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-    top: auto;
-    bottom: 20px;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 3rem; 
-    height: 3rem; 
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-    width: 2rem;
-    font-size: 2rem; 
-}
-.carousel-control-prev {
-    margin-left: 43rem;
+.job-app-status{
+    margin-left: 250px;
 
 }
-.carousel-control-next {
-    margin-right: 43rem;
+
+.job-status-item {
+    height: 70px;
+    margin-bottom: 15px;
+    background-color: #d3d3d3;
 }
 
-.carousel-inner {
-    overflow: visible;
+.job-status-company{
+    margin-top: 17px;
+    margin-left: 20px;
+    font-size: 25px;
 }
-
-.carousel-item {
-    transform: scale(0.8); 
-    transition: transform 0.3s ease-in-out;
+.job-status-icon {
+    margin-top: 5px;
+    font-size: 40px;
+    margin-right: 25px;
+    text-align: right;
 }
-
-.carousel-item.active {
-    transform: scale(1);
+.job-status-icon .fa-hourglass {
+    margin-right: 5px;
 }
-
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.sucess{
+    color: var(--green);
 }
-
-.carousel-inner {
-    overflow: visible;
+.rejected {
+    color: #AC6778;
 }
-
-.carousel-item {
-    transform: translateX(-5%);
-    transition: transform 0.3s ease-in-out;
+.no-response {
+    color: var(--white);
 }
-
-.carousel-item.active,
-.carousel-item-next,
-.carousel-item-prev {
-    transform: translateX(0);
-} */
-
-
-

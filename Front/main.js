@@ -1,4 +1,5 @@
 $('.slider').slick({
+    autoplay:true,
     infinite: true,
     speed: 300,
     slidesToShow: 3,
