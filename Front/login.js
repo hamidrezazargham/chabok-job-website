@@ -9,7 +9,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: '/your-backend-endpoint', // Replace with your actual backend endpoint
+            url: 'https://c042-109-230-67-162.ngrok-free.app/login/', // Replace with your actual backend endpoint
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),

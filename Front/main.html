@@ -5,67 +5,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/all.min-free.css">
     <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
     <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
-    <link rel="stylesheet" href="style.css">
-    <title>Sign Up</title>
+    <link rel="stylesheet" href="main.css">
+    <title>Main Page</title>
 </head>
 
 <body>
     <header>
         <div class="header-top">
-            <div class="container">
-                <div class="row dir-rtl ">
-                    <div class="col-lg-5 top-left-header">
-                        <a href="#">نحوه ارسال</a>
-                        <a href="#">سوالات متدوال</a>
-                        <a href="#">تماس با ما</a>
-                        <a href="#">رهگیری سفارش</a>
+            <div class="row header-top ">
+                <div class="col-3">
+                    <div class="profile-pic-container ml-5">
+                        <img src="andrew.jpg" alt="Profile Pic" class="profile-pic">
                     </div>
-                    <div class="col-lg-4 top-mid-header"> .....</div>
-                    <div class="col-lg-2 top-right-header">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-pinterest"></i></a>
-                        <div class="btn-group">
-                            <button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                فارسی
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">English</a>
-                            </div>
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                $ دلار
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">ریال</a>
-
-                            </div>
+                </div>
+                <div class="col-4">
+                    <div class="mid-header">
+                        Chabook
+                    </div>
+                </div>
+                <div class="col-5 ">
+                    <div class="dropdown mr-4 text-right">
+                        <button class="btn btn-secondary dropdown-toggle btn-menu mt" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Menu
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="text-center dropdown-text">Menu</div>
+                            <a class="dropdown-item" href="#">edit profile</a>
+                            <a class="dropdown-item" href="#">home page</a>
+                            <a class="dropdown-item" href="#">log out</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </header>
+    
+    <main>
+        <div class="container-fluid main-container">
+            <div class="row">
+                <div class="col-12 mt-3 div-search-box">
+                    <div class="input-group search-box">
+                        <input type="text" class="form-control search-box" placeholder="Search...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
 
+            <div class="slider mt-5">
+                <div class="slider-item">A</div>
+                <div class="slider-item">B</div>
+                <div class="slider-item">C</div>
+                <div class="slider-item">D</div>
+                <div class="slider-item">E</div>
+                <div class="slider-item">Fz</div>
+            </div>
+
+        </div>
+    </main>
 
     <!-- Add your content here -->
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script> -->
     <script src="main.js"></script>
+
+
+
+    
 </body>
 
 </html>
