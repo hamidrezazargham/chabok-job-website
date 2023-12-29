@@ -83,7 +83,7 @@
 
 .main-container{
     background-color: var(--gray);
-    height: 1580px;
+    height: 2000px;
     max-width: 1883px;
 
 }
@@ -176,7 +176,7 @@
 
 .job-app-shadow {
     width: 1750px;
-    height: 700px;
+    height: 1000px;
     background-color: #d8d8d844;
     border-radius: 20px;
     margin-left: 50px;
@@ -224,4 +224,18 @@
 }
 .no-response {
     color: var(--white);
+}
+.bottom-footer {
+    background-color: #1B1B1B;
+    color: var(--white);
+    height: 300px;
+}
+.footer-section{
+    margin-top: 70px;
+}
+.footer-section p {
+    margin-bottom: 0px;
+}
+.footer-left {
+    margin-left: 150px;
 }
