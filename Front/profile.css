@@ -82,6 +82,8 @@
     height: 100px;
     overflow: hidden;
     border-radius: 50%;
+    cursor: pointer;
+    position: relative;
 }
 
 .profile-pic-header {
@@ -139,17 +141,19 @@
     max-width: 650px;
     /* width: 100%; */
     padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* background-color: #fff; */
+    /* border-radius: 10px; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     margin-top: 100px;
     margin-left: 630px;
     height: 850px;
+    position: relative;
+    z-index: 1;
 }
 
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     margin: 0 auto 20px;
     overflow: hidden;
@@ -160,8 +164,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
 
+}
+.profile-pic {
+    box-shadow: 0px 0px 31px -2px #67AA92;
+
+}
 .form-group {
     margin-bottom: 20px;
 }
@@ -183,11 +191,29 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: var(--pink) ;
     color: #fff;
     text-align: center;
     text-decoration: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
+}
+
+.form-check-input.role-selector {
+	appearance: none;
+	width: 20px; 
+	height: 20px; 
+	border: 2px solid var(--pink); 
+	border-radius: 4px;
+}
+
+.form-check-input.role-selector:checked {
+    background-color: var(--pink);
+}
+
+.about-youself {
+    border-radius: 20px;
+    height: 150px;
+    max-height: 300px;
 }
