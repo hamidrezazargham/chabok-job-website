@@ -175,7 +175,7 @@
     color: var(--white);
     background-color: var(--blue);
     width: 140px;
-    margin-left: 10px;
+    margin-left: 250px;
 }
 .btn-send-resume {
     border-radius: 15px;
@@ -183,21 +183,6 @@
     background-color: var(--green);
     width: 140px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .bottom-footer {
     background-color: #1B1B1B;

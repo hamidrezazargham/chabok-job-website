@@ -1,3 +1,12 @@
+/* body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+} */
+
+
 :root {
 	--blue: #11009E; /* Define your primary color variable */
 	--purple: #4942E4; /* Define your border color variable */
@@ -75,7 +84,7 @@
     border-radius: 50%;
 }
 
-.profile-pic {
+.profile-pic-header {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -83,88 +92,13 @@
 
 .main-container{
     background-color: var(--gray);
-    height: 2000px;
+    height: 1400px;
     max-width: 1883px;
-
-}
-.search-btn {
-    border: none;
-    background-color: transparent;
-    position: absolute;
-    right: 35px;
-    margin-top: 5px;
-    font-size: 25px;
-    outline: none; 
-    z-index: 10;
-
-}
-.search-btn:hover {
-    background-color: transparent;
-    color: var(--pink)
-}
-.search-btn:focus {
-    outline: none; 
-}
-.search-box {
-    border-radius: 10px !important;
-    height: 45px;
-
-}
-.input-group.search-box {
-    width: 750px;
-}
-.form-control.search-box {
-    border: 1px solid black;
-
-}
-.div-search-box{
-    display: flex;
-    justify-content: center;
-    margin-top: 150px !important;
-
-}
-
-.search-text {
-    font-size: 25px;
-    font-weight: 700;
-    color: #8A8484;
-}
-
-.slider {
+    /* text-align: -webkit-center; */
     display: grid;
-    justify-content: center;
-}
 
-.slider-item{
-    width: 1000px;
-    height: 380px;
-    background: linear-gradient(to right, #d2cef7, var(--purple)); 
-    border-radius: 30px;
-    /* margin-right: 40px; */
-    border: 1px solid #ddd; /* Add a border for visual separation */
-    margin: 10px; /* Add some margin for spacing */
-    padding: 20px; /* Add padding for content spacing */
-    box-sizing: border-box; 
-}
 
-.job-image {
-    max-width: 100%;
-    width: 420px;
-    height: 320px;
-    border-radius: 30px;
-    margin-top: 10px;
-    margin-left: 28px;
-}
 
-.job-info {
-    margin-top: 20px;
-    margin-left: 40px;
-}
-.job-title {
-    font-size: 35px;
-}
-.job-info p{
-    margin-top: 25px;
 }
 
 .btn-container {
@@ -185,20 +119,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .bottom-footer {
     background-color: #1B1B1B;
     color: var(--white);
@@ -212,4 +132,62 @@
 }
 .footer-left {
     margin-left: 150px;
+}
+
+
+.edit-profile-container {
+    max-width: 650px;
+    /* width: 100%; */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    margin-left: 630px;
+    height: 850px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border: 2px solid #ddd;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.gender-options {
+    display: flex;
+    align-items: center;
+}
+
+.gender-options label {
+    margin-right: 10px;
+}
+
+.btn-upload {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
