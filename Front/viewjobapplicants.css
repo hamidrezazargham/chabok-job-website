@@ -83,7 +83,6 @@
 
 .main-container{
     background-color: var(--gray);
-    height: 2000px;
     max-width: 1883px;
 
 }
@@ -175,7 +174,7 @@
     color: var(--white);
     background-color: var(--blue);
     width: 140px;
-    margin-left: 250px;
+    margin-left: 10px;
 }
 .btn-send-resume {
     border-radius: 15px;
@@ -183,6 +182,18 @@
     background-color: var(--green);
     width: 140px;
 }
+
+.icon-back {
+    position: absolute;
+    margin-left: -30px;
+    font-size: 27px;
+    margin-top: 8px;
+    color: #8A8484;
+}
+
+
+
+
 
 .bottom-footer {
     background-color: #1B1B1B;
@@ -199,12 +210,115 @@
     margin-left: 150px;
 }
 
-.btn-add-job { 
-    border-radius: 15px;
-    color: var(--white);
-    background-color: var(--blue);
-    width: 140px;
-    margin-left: 17px;
-    margin-top: 100px;
+.job-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--pink);
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    /* width: 950px; */
+}
 
+.job-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.view-job-tag {
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.people-text { 
+    font-size: 30px;
+    font-weight: 700;
+    color: #8A8484;
+}
+.applicant-box {
+    display: flex;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    background-color: #d1d1d1;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    height: 150px;
+    position: relative;
+    width: 1000px;
+
+}
+
+.applicant-info {
+    display: flex;
+    align-items: center;
+}
+
+.applicant-image {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.applicant-details {
+    flex-grow: 1;
+}
+
+.applicant-name {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.applicant-email {
+    font-size: 18px;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.download-resume {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 20px;
+    height: 30px;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    font-size: 25px;
+}
+
+.accept-button, .reject-button {
+    border: none;
+    cursor: pointer;
+}
+
+.accept-button {
+    background-color: #67AA92;
+    color: #fff;
+    border-radius: 10px;
+    height: 35px;
+    width: 170px;
+    position: absolute;
+    right: 40px;
+    top: 60px;
+}
+
+.reject-button {
+    background-color: #b1566c;
+    color: #fff;
+    border-radius: 10px;
+    height: 35px;
+    width: 170px;
+    /* margin-left: 225px; */
+    /* margin-top: 80px; */
+    position: absolute;
+    right: 40px;
+    top: 100px;
 }

@@ -217,3 +217,16 @@
     height: 150px;
     max-height: 300px;
 }
+
+.btn-change-pic {
+    border-radius: 15px;
+    color: var(--white);
+    background-color: var(--blue);
+    width: 140px;
+    margin-left: -45px;
+    margin-top: 197px;
+    position: absolute;
+}
+#fileInput {
+    display: none !important;
+}
