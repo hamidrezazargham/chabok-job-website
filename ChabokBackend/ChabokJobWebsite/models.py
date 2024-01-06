@@ -12,6 +12,15 @@ def user_directory_path(instance, filename):
 class Resume(models.Model):
     file_url = models.FileField(upload_to=user_directory_path, default=None, null=True)
     
+    def get_file(self):
+        if self.file_url is not None:
+            return self.file_url.url
+        return None
+    
+    @classmethod
+    def find_by_id(cls, id):
+        return cls.objects.get(id=id)
+    
 class Gender(models.IntegerChoices):
     MALE = 0, _('MALE')
     FEMALE = 1, _('FEMALE')
@@ -25,56 +34,61 @@ class Status(models.IntegerChoices):
     WAITING = 0, _('WAITING')
     ACCEPTED = 1, _('ACCEPTED')
 
-
-class UserInfo(models.Model):
-    first_name = models.CharField(max_length=128, default='', null=True, blank=True)
-    last_name = models.CharField(max_length=128, default='', null=True, blank=True)
+class User(AbstractBaseUser):
+    username = models.CharField(max_length=128, unique=True)
+    email = models.EmailField()
+    role = models.IntegerField(
+        choices=Role.choices,
+        default=Role.JOB_SEEKER
+    )
+    first_name = models.CharField(max_length=128)
+    last_name = models.CharField(max_length=128)
     gender = models.IntegerField(
         choices=Gender.choices,
         default=None,
         null=True,
         blank=True
     )
-    age = models.IntegerField(default=None, null=True)
+    age = models.IntegerField()
     image = models.ImageField(upload_to=user_directory_path, default=None, null=True)
     province = models.CharField(max_length=128, default=None, null=True, blank=True)
     city = models.CharField(max_length=128, default=None, null=True, blank=True)
-    resume = models.ForeignKey(Resume, on_delete=models.SET_NULL, related_name='user_info', default=None, null=True, blank=True)
-    
-    def get_image(self):
-        if not self.image:
-            return 'no-image'
-        return self.image.url
-
-class User(AbstractBaseUser):
-    username = models.CharField(max_length=128, unique=True)
-    email = models.EmailField()
-    is_employer = models.IntegerField(
-        choices=Role.choices,
-        default=Role.JOB_SEEKER
-    )
-    user_info = models.ForeignKey(UserInfo, on_delete=models.SET_NULL, related_name='user', default=None, null=True, blank=True)
+    resume = models.ForeignKey(Resume, on_delete=models.SET_NULL, related_name='user', default=None, null=True)
     
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['username','email', 'is_employer']
-    
+    REQUIRED_FIELDS = ['username','email', 'role']
     
     def __str__(self):
         return self.username
     
-    def get_user_info(self):
-        return User.objects.filter(id = self.id).values('id', 'username', 'email', 'user_info', role=Role(int(self.role)).name,
-            first_name=F('user_info__first_name'), last_name=F('user_info__last_name'), gender=Gender(int(F('user_info__gender'))).name, age=F('user_info__age'), image=F('user_info__image'),
-            province=F('user_info__province', city=F('user_info__city'))).first()
-    
     def get_role(self):
         return Role(int(self.role)).name
+    
+    def get_fullname(self):
+        return f"{self.first_name} {self.last_name}"
     
     def get_gender(self):
         if self.gender != None:
             return Gender(int(self.gender)).name
         return self.gender
     
+    def get_age(self):
+        return self.age
+    
+    def get_image(self):
+        if self.image is not None:
+            return self.image.url
+        return None
+    
+    def get_province(self):
+        return self.province
+    
+    def get_city(self):
+        return self.city
+    
+    def get_resume_id(self):
+        return self.resume.id
+        
     @classmethod
     def find_by_id(cls, id):
         return cls.objects.get(id=id)
@@ -92,16 +106,94 @@ class JobOffer(models.Model):
     reqired_skils = models.CharField(max_length=512, null=True, blank=True)
     company_description = models.CharField(max_length=512, null=True, blank=True)
     
+    def recommend_by_tags(tags: list):
+        pass
+    
+    def get_title(self): 
+        return self.title
+    
+    def get_company_name(self):
+        return self.company_name
+    
+    def get_location(self):
+        return self.location
+    
+    def get_type_collabration(self):
+        return self.type_collabration
+    
+    def get_job_description(self):
+        return self.job_description
+    
+    def get_required_skills(self):
+        return self.reqired_skils
+    
+    def get_company_description(self):
+        return self.company_description
+    
+    @classmethod
+    def find_by_id(cls, id):
+        return cls.objects.get(id=id)
+    
 class Tag(models.Model):
     name = models.CharField(max_length=128)
-    user = models.ForeignKey(UserInfo, on_delete=models.SET_NULL, related_name='tags', default=None, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='tags', default=None, null=True)
     job_offer = models.ForeignKey(JobOffer, on_delete=models.SET_NULL, related_name='tags', default=None, null=True)
+    
+    def get_name(self):
+        return self.name
+    
+    def get_user_id(self):
+        if self.user is not None:
+            return self.user.id
+        return None
+    
+    def get_job_offer_id(self):
+        if self.job_offer is not None:
+            return self.job_offer
+        return None
+    
+    @classmethod
+    def find_by_id(cls, id):
+        return cls.objects.get(id=id)
+    
+    @classmethod
+    def find_by_user_id(cls, id):
+        return [tag.id for tag in cls.objects.filter(user__id=id)]
+    
+    @classmethod
+    def find_by_job_offer_id(cls, id):
+        return [tag.id for tag in cls.objects.filter(job_offer__id=id)]
 
 class Application(models.Model):
-    user = models.ForeignKey(UserInfo, on_delete=models.SET_NULL, related_name='applications')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='applications')
     resume = models.ForeignKey(Resume, on_delete=models.SET_NULL, related_name='applications')
     status = models.IntegerField(
         choices=Status.choices,
         default=Status.WAITING
     )
     job_offer = models.ForeignKey(JobOffer, on_delete=models.SET_NULL, related_name='applications')
+    
+    def get_user_id(self):
+        return self.user.id
+    
+    def get_resume_id(self):
+        return self.resume.id
+    
+    def get_status(self):
+        return Status(int(self.status)).name
+    
+    def get_job_offer_id(self):
+        return self.job_offer.id
+    
+    @classmethod
+    def find_by_id(cls, id):
+        return cls.objects.get(id=id)
+    
+    @classmethod
+    def find_by_user_id(cls, id):
+        return [application.id for application in cls.objects.filter(user__id=id)]
+    
+    @classmethod
+    def find_by_job_offer_id(cls, id):
+        return [application.id for application in cls.objects.filter(job_offer__id=id)]
+    
