@@ -1,0 +1,33 @@
+/home/ GET:
+role = job_seeker
+	profile_url
+	recomended_list
+	aplications_list
+
+role = employer
+	jobs_list
+
+/jobs/<id> GET:
+role = job_seeker
+	job
+role = employer
+	job
+	aplications_list
+
+/jobs/create POST:
+	job info
+
+/jobs/delete/<id> POST:
+	...
+
+/jobs/edit/<id> POST:
+	job info
+
+/profile GET:
+	user profile
+
+/profile/edit POST:
+	user profile
+
+/jobs/apply POST:
+	send resume
