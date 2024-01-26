@@ -62,4 +62,5 @@ def view_job(request, pk):
             context = viewJobsSerializer(job_offer).data
             return render(request, 'viewjobs.html')
     return render(request, 'login.html', context)
-    
+
+
