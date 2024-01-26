@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     
     "ChabokJobWebsite",
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
