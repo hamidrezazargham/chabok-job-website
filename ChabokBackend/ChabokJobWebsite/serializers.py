@@ -37,6 +37,16 @@ class jobOfferSerializer(serializers.Serializer):
         return author.data
     
 
+class editJobOfferSerializer(serializers.Serializer):
+    title = serializers.CharField(max_length=256)
+    company_name = serializers.CharField(max_length=128)
+    location = serializers.CharField(max_length=128)
+    type_collabration = serializers.CharField(max_length=128)
+    job_description = serializers.CharField(max_length=512, null=True, blank=True)
+    reqired_skils = serializers.CharField(max_length=512, null=True, blank=True)
+    company_description = serializers.CharField(max_length=512, null=True, blank=True)
+    
+
 class resumeSerializer(serializers.Serializer):
     file_url = serializers.FileField(allow_empty_file=False, use_url=True)
 
@@ -105,7 +115,7 @@ class viewJobApplicantsSerializer(serializers.Serializer):
         return applications.data
 
 
-class viewJobsSerializer(serializers.Serializer):
+class viewJobSerializer(serializers.Serializer):
     job_offer = serializers.SerializerMethodField("get_jobOffer")
     
     def get_jobOffer(self, obj):

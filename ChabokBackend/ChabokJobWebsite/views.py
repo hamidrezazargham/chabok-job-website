@@ -97,3 +97,18 @@ def delete_job(request, pk):
         delete_job_offer(job_offer)
         return redirect('viewjoblist')
     return Response({}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+def edit_job(request, pk):
+    user = request.user
+    job_offer = get_jobOffer_by_id(pk)
+    if job_offer.author.id == user.id:
+        context = jobOfferSerializer(job_offer).data
+        if request.method == "POST":
+            jobOffer = editJobOfferSerializer(request.POST)
+            if jobOffer.is_valid(raise_exception=True):
+                job_offer = update_job_offer(job_offer, jobOffer.data)
+                return redirect('viewjob', pk=job_offer.id)
+        return render(request, 'addjob.html', context)
+    
+
