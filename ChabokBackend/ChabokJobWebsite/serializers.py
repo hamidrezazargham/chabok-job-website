@@ -35,10 +35,15 @@ class userInfoSerializer(serializers.Serializer):
 
 class userProfileSerializer(userInfoSerializer):
     resume = serializers.SerializerMethodField("get_resume")
+    applications = serializers.SerializerMethodField("get_applications")
     
     def get_resume(self, obj):
         resume = resumeSerializer(obj.get_resume())
         return resume.data
+    
+    def get_applications(self, obj):
+        applications = applicationSerializer(Application.find_by_user_id(obj.id), many=True)
+        return applications.data
         
 class editUserProfileSerializer(userInfoSerializer):
     role = serializers.IntegerField(
@@ -99,10 +104,6 @@ class applicationSerializer(serializers.Serializer):
     def get_jobOffer(self, obj):
         job_offer = jobOfferSerializer(obj.get_job_offer())
         return job_offer.data
-    
-
-class createApplicationSerializer(serializers.Serializer):
-    resume = serializers.FileField(allow_empty_file=False, use_url=True)
     
     
 class jobSeekerHomePageSerializer(serializers.Serializer):
