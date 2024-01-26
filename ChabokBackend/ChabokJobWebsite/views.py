@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
 from .serializers import *
 from .forms import CreateUserForm
 from .serializers import jobSeekerHomePageSerializer
