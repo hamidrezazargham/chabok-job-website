@@ -61,6 +61,6 @@ def view_job(request, pk):
         else:
             context = viewJobsSerializer(job_offer).data
             return render(request, 'viewjobs.html')
-    return render(request, 'login.html', context)
+    return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
