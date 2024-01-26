@@ -1,6 +1,17 @@
 from rest_framework import serializers
-from .models import User, Application, JobOffer, Resume, Status, Role
+from .models import Application, JobOffer, Role, Gender
 
+    
+
+class uploadResumeSerializer(serializers.Serializer):
+    file_url = serializers.FileField(allow_empty_file=False, use_url=True)
+    
+
+class resumeSerializer(serializers.Serializer):
+    file_url = serializers.SerializerMethodField("get_resume")
+    
+    def get_resume(self, obj):
+        return obj.get_file()
     
 
 class userInfoSerializer(serializers.Serializer):
@@ -20,6 +31,27 @@ class userInfoSerializer(serializers.Serializer):
     
     def get_gender(self, obj):
         return obj.get_gender()
+
+
+class userProfileSerializer(userInfoSerializer):
+    resume = serializers.SerializerMethodField("get_resume")
+    
+    def get_resume(self, obj):
+        resume = resumeSerializer(obj.get_resume())
+        return resume.data
+        
+class editUserProfileSerializer(userInfoSerializer):
+    role = serializers.IntegerField(
+        choices=Role.choices,
+        default=Role.JOB_SEEKER
+    )
+    gender = serializers.IntegerField(
+        choices=Gender.choices, 
+        default=None,
+        null=True,
+        blank=True
+    )
+    resume = serializers.FileField(allow_empty_file=False, use_url=True)
 
 
 class jobOfferSerializer(serializers.Serializer):
@@ -45,10 +77,6 @@ class editJobOfferSerializer(serializers.Serializer):
     job_description = serializers.CharField(max_length=512, null=True, blank=True)
     reqired_skils = serializers.CharField(max_length=512, null=True, blank=True)
     company_description = serializers.CharField(max_length=512, null=True, blank=True)
-    
-
-class resumeSerializer(serializers.Serializer):
-    file_url = serializers.FileField(allow_empty_file=False, use_url=True)
 
 
 class applicationSerializer(serializers.Serializer):
@@ -71,6 +99,10 @@ class applicationSerializer(serializers.Serializer):
     def get_jobOffer(self, obj):
         job_offer = jobOfferSerializer(obj.get_job_offer())
         return job_offer.data
+    
+
+class createApplicationSerializer(serializers.Serializer):
+    resume = serializers.FileField(allow_empty_file=False, use_url=True)
     
     
 class jobSeekerHomePageSerializer(serializers.Serializer):

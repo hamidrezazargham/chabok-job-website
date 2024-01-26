@@ -1,4 +1,4 @@
-from .models import JobOffer, User
+from .models import JobOffer, Resume, Application
 
 
 def get_jobOffer_by_id(id):
@@ -25,3 +25,28 @@ def update_job_offer(job_offer, jobOfferData):
     job_offer.company_description = jobOfferData['company_description']
     job_offer.save()
     return job_offer
+
+def update_user_profile(user, user_profile):
+    user.username = user_profile['username']
+    user.first_name = user_profile['first_name']
+    user.last_name = user_profile['last_name']
+    user.email = user_profile['email']
+    user.role = user_profile['role']
+    user.gender = user_profile['gender']
+    user.age = user_profile['age']
+    user.image_url = user_profile['image_url']
+    user.city = user_profile['city']
+    user.province = user_profile['province']
+    resume = Resume(file_url=user_profile['resume'])
+    resume.save()
+    user.resume = resume
+    user.save()
+    return user
+
+
+def create_application(user, job_offer):
+    resume = user.get_resume()
+    applciation = Application(user=user, resume=resume, job_offer=job_offer)
+    applciation.save()
+    return applciation
+    

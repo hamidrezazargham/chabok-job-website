@@ -52,17 +52,18 @@ def home_page(request):
 
 def view_job(request, pk):
     context = {}
-    if request.method == "GET":
-        user = request.user
-        job_offer = get_jobOffer_by_id(pk)
-        if user.get_role() == "EMPLOYER":
-            context = viewJobApplicantsSerializer(job_offer).data
-            return render(request, 'viewjobapplicants.html', context)
-        else:
-            context = viewJobsSerializer(job_offer).data
-            return render(request, 'singlejob.html')
-    return Response({}, status=status.HTTP_400_BAD_REQUEST)
-
+    user = request.user
+    job_offer = get_jobOffer_by_id(pk)
+    if user.get_role() == "EMPLOYER":
+        context = viewJobApplicantsSerializer(job_offer).data
+        return render(request, 'viewjobapplicants.html', context)
+    else:
+        context = viewJobSerializer(job_offer).data
+        if request.method == "POST":
+            application = create_application(user, job_offer)
+            return redirect('viewjob', pk=pk)
+        return render(request, 'singlejob.html', context)
+    
 
 def view_job_list(request):
     user = request.user
@@ -84,7 +85,7 @@ def create_job(request):
         if user.get_role() == "EMPLOYER":
             job_offer = jobOfferSerializer(request.POST)
             if job_offer.is_valid(raise_exception=True):
-                jobOffer = create_job_offer(job_offer.data)
+                jobOffer = create_job_offer(job_offer.validated_data)
                 return redirect('viewjob', pk=jobOffer.id)
         return Response({}, status=status.HTTP_401_UNAUTHORIZED)
     return render(request, 'addjob.html', context)
@@ -107,8 +108,18 @@ def edit_job(request, pk):
         if request.method == "POST":
             jobOffer = editJobOfferSerializer(request.POST)
             if jobOffer.is_valid(raise_exception=True):
-                job_offer = update_job_offer(job_offer, jobOffer.data)
+                job_offer = update_job_offer(job_offer, jobOffer.validated_data)
                 return redirect('viewjob', pk=job_offer.id)
         return render(request, 'addjob.html', context)
+    return Response({}, status=status.HTTP_401_UNAUTHORIZED)
     
 
+def profile(request):
+    user = request.user
+    context = userProfileSerializer(user)
+    if request.method == "POST":
+        user_profile = editUserProfileSerializer(request.POST)
+        if user_profile.is_valid(raise_exception=True):
+            request.user = update_user_profile(user, user_profile.validated_data)
+            return redirect('profile')
+    return render(request, 'profile.html', context)

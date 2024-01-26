@@ -82,8 +82,8 @@ class User(User_):
     def get_city(self):
         return self.city
     
-    def get_resume_id(self):
-        return self.resume.id
+    def get_resume(self):
+        return self.resume
         
     @classmethod
     def find_by_id(cls, id):
