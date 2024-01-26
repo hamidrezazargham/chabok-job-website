@@ -42,7 +42,7 @@ class userProfileSerializer(userInfoSerializer):
         return resume.data
     
     def get_applications(self, obj):
-        applications = applicationSerializer(Application.find_by_user_id(obj.id), many=True)
+        applications = applicationSerializer(Application.find_by_user(obj), many=True)
         return applications.data
         
 class editUserProfileSerializer(userInfoSerializer):

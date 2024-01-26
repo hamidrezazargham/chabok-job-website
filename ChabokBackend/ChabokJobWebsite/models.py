@@ -199,8 +199,8 @@ class Application(models.Model):
         return cls.objects.get(id=id)
     
     @classmethod
-    def find_by_user_id(cls, id):
-        return [application.id for application in cls.objects.filter(user__id=id)]
+    def find_by_user(cls, user):
+        return [application.id for application in cls.objects.filter(user=user)]
     
     @classmethod
     def find_by_job_offer(cls, job_offer):
