@@ -60,7 +60,40 @@ def view_job(request, pk):
             return render(request, 'viewjobapplicants.html', context)
         else:
             context = viewJobsSerializer(job_offer).data
-            return render(request, 'viewjobs.html')
+            return render(request, 'singlejob.html')
     return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
+def view_job_list(request):
+    user = request.user
+    if user.get_role() == "EMPLOYER":
+        context = {}
+        if request.method == "GET":
+            job_offers = find_jobOffers_by_user(user)
+            context = jobOfferSerializer(job_offers, many=True).data
+            return render(request, 'viewjobs.html', context)
+        return Response({}, status=status.HTTP_400_BAD_REQUEST)
+    return Response({}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+def create_job(request):
+    context = {}
+    if request.method == "POST":
+        user = request.user
+        if user.get_role() == "EMPLOYER":
+            job_offer = jobOfferSerializer(request.POST)
+            if job_offer.is_valid(raise_exception=True):
+                jobOffer = create_job_offer(job_offer.data)
+                return redirect('viewjob', pk=jobOffer.id)
+        return Response({}, status=status.HTTP_401_UNAUTHORIZED)
+    return render(request, 'addjob.html', context)
+
+
+def delete_job(request, pk):
+    user = request.user
+    job_offer = get_jobOffer_by_id(pk)
+    if job_offer.author.id == user.id:
+        delete_job_offer(job_offer)
+        return redirect('viewjoblist')
+    return Response({}, status=status.HTTP_401_UNAUTHORIZED)

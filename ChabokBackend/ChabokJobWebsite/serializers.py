@@ -111,3 +111,4 @@ class viewJobsSerializer(serializers.Serializer):
     def get_jobOffer(self, obj):
         job_offer = jobOfferSerializer(obj)
         return job_offer.data
+    
