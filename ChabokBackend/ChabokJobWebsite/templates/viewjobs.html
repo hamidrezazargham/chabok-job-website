@@ -7,14 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css'%}">
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{% static 'css/all.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/all.min-free.css'%}">
-    <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
-    <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
     <link rel="stylesheet" href="{% static 'viewjobs.css'%}">
     <title>Search Results</title>
 </head>
@@ -25,7 +21,7 @@
             <div class="row header-top ">
                 <div class="col-3">
                     <div class="profile-pic-container ml-5">
-                        <img src="images/andrew.jpg" alt="Profile Pic" class="profile-pic">
+                        <img src="{% static 'images/andrew.jpg'%}" alt="Profile Pic" class="profile-pic">
                     </div>
                 </div>
                 <div class="col-4">
@@ -66,7 +62,7 @@
                 <div class="slider-item">
                     <div class="row">
                         <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
+                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
                         </div>
                         <div class="col-6">
                             <div class="job-info">
@@ -85,7 +81,7 @@
                 <div class="slider-item">
                     <div class="row">
                         <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
+                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
                         </div>
                         <div class="col-6">
                             <div class="job-info">
@@ -104,7 +100,7 @@
                 <div class="slider-item">
                     <div class="row">
                         <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
+                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
                         </div>
                         <div class="col-6">
                             <div class="job-info">
@@ -123,7 +119,7 @@
                 <div class="slider-item">
                     <div class="row">
                         <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
+                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
                         </div>
                         <div class="col-6">
                             <div class="job-info">
@@ -183,12 +179,8 @@
     <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
     <script src="{% static 'js/popper.min.js'%}"></script>
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
-    <script src="{% static 'js/slick.min.js'}"></script>
+    <script src="{% static 'js/slick.min.js'%}"></script>
     <script src="{% static 'js/AntiOverflowFontResizer.min.js'%}"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script> -->
     <script src="{% static 'search.js'%}"></script>
 
 
