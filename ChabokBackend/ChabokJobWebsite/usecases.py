@@ -4,8 +4,8 @@ from .models import JobOffer, Resume, Application
 def get_jobOffer_by_id(id):
     return JobOffer.find_by_id(id)
 
-def create_job_offer(job_offer):
-    jobOffer = JobOffer(**job_offer)
+def create_job_offer(job_offer, user):
+    jobOffer = JobOffer(author=user, **job_offer)
     jobOffer.save()
     return jobOffer
 

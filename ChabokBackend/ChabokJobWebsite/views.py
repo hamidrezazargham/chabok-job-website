@@ -81,17 +81,20 @@ def view_job(request, pk):
 def create_job(request):
     context = {}
     user = request.user
-    if request.method == "POST":
-        try:
-            if user.get_role() == "EMPLOYER":
-                job_offer = jobOfferSerializer(request.POST)
-                if job_offer.is_valid(raise_exception=True):
-                    jobOffer = create_job_offer(job_offer.validated_data)
-                    return redirect('viewjob', pk=jobOffer.id)
-        except:
-            pass
-        return Response({}, status=status.HTTP_401_UNAUTHORIZED)
-    return render(request, 'addjob.html', context)
+    # try:
+    if user.get_role() == "EMPLOYER":
+        if request.method == "POST":
+            print(request.POST)
+            job_offer = jobOfferSerializer(request.POST)
+            print(job_offer.data)
+            print("#" * 50)
+            jobOffer = create_job_offer(job_offer.data, user)
+            return redirect('viewjob', pk=jobOffer.id)
+        return render(request, 'addjob.html', context)
+    # except:
+    #     pass
+    return Response({}, status=status.HTTP_401_UNAUTHORIZED)
+    
 
 
 def delete_job(request, pk):

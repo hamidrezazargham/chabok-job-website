@@ -70,7 +70,7 @@ class userProfileSerializer(serializers.Serializer):
         return obj.get_description()
     
     def get_role(self, obj):
-        return obj.get_role()
+        return obj.get_role_id()
     
     def get_resume(self, obj):
         resume = resumeSerializer(obj.get_resume())
@@ -97,14 +97,14 @@ class jobOfferSerializer(serializers.Serializer):
     location = serializers.CharField(max_length=128)
     type_collabration = serializers.CharField(max_length=128)
     job_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
-    reqired_skils = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
-    company_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
-    salary = serializers.CharField(max_length=128)
-    author = serializers.SerializerMethodField("get_author")
+    # reqired_skils = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    # company_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    salary = serializers.IntegerField(allow_null=True)
+    # author = serializers.SerializerMethodField("get_author")
     
-    def get_author(self, obj):
-        author = userInfoSerializer(obj.get_author())
-        return author.data
+    # def get_author(self, obj):
+    #     author = userInfoSerializer(obj.get_author())
+    #     return author.data
     
 
 class editJobOfferSerializer(serializers.Serializer):
@@ -113,8 +113,9 @@ class editJobOfferSerializer(serializers.Serializer):
     location = serializers.CharField(max_length=128)
     type_collabration = serializers.CharField(max_length=128)
     job_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
-    reqired_skils = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
-    company_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    # reqired_skils = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    # company_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    salary = serializers.IntegerField(allow_null=True)
 
 
 class applicationSerializer(serializers.Serializer):

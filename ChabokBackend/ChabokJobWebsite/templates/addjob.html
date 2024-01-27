@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css'%}">
@@ -25,7 +25,7 @@
             <div class="row header-top ">
                 <div class="col-3">
                     <div class="profile-pic-container ml-5">
-                        <img src="images/andrew.jpg" alt="Profile Pic" class="profile-pic">
+                        <img src="{% static 'images/andrew.jpg'%}" alt="Profile Pic" class="profile-pic">
                     </div>
                 </div>
                 <div class="col-4">
@@ -41,9 +41,9 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <div class="text-center dropdown-text">Menu</div>
-                            <a class="dropdown-item" href="{% url 'profile' %}">edit profile</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">home page</a>
-                            <a class="dropdown-item" href="{% url 'logout' %}">log out</a>
+                            <a class="dropdown-item" href="{% url 'home' %}">Home</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                         </div>
                     </div>
                 </div>
@@ -58,29 +58,62 @@
                 <div class="slider-item">
                     <div class="row">
                         <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
+                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
                         </div>
                         <div class="col-6">
                             <div class="job-info">
-                                <h3 class="job-title" contenteditable="true">Position name</h3>
-                                <i class="fas fa-briefcase icon-jobs"></i> <p contenteditable="true">Your Company</p>
+                                <form id="addjobForm" method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="username"><h5>Job Title</h5></label>
+                                    <input type="text" class="form-control" name="title" placeholder="Enter the job title...">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="username"><h5>Company Name</h5></label>
+                                    <input type="text" class="form-control" name="company_name" placeholder="Enter your company name...">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="username"><h5>Collabration Type</h5></label>
+                                    <input type="text" class="form-control" name="type_collabration" placeholder="Enter your collabration type...">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="username"><h5>Salary</h5></label>
+                                    <input type="text" class="form-control" name="salary" placeholder="Enter the job salary...">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="username"><h5>Location</h5></label>
+                                    <input type="text" class="form-control" name="location" placeholder="Enter the job's location...">
+                                </div>
+
+                                {% comment %} <p class="job-description mt-5">
+                                    Job Description
+                                </p>
+                                <div class="round-text-box" contenteditable="true" name="description">
+                                    <p>Write a description...</p>
+                                </div> {% endcomment %}
+
+                                <div class="form-group">
+                                    <label for="username"><h5>Job description</h5></label>
+                                    <input type="text" class="round-text-box" name="description" placeholder="Write a description...">
+                                </div>
+
+                                {% comment %} <i class="fas fa-briefcase icon-jobs"></i> <p contenteditable="true">Your Company name</p>
                                 <i class="far fa-clock icon-jobs"></i> <p contenteditable="true">Full Time / part-time</p>
-                                <i class="fas fa-dollar-sign icon-jobs"></i><p contenteditable="true"> ??$ / month</p>
-                                <i class="fas fa-map-marker-alt icon-jobs"></i> <p contenteditable="true">location</p>
+                                <i class="fas fa-dollar-sign icon-jobs"></i><p contenteditable="true"> ? $ / month</p>
+                                <i class="fas fa-map-marker-alt icon-jobs"></i> <p contenteditable="true">Location</p> {% endcomment %}
                                 <div class="btn-container">
-                                    <a href="#"><button class="btn btn-open-job">Make the job</button></a>
+                                    <a><button class="btn btn-open-job" type="submit">Make the job</button></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <p class="job-description mt-5">
-                Job Description
-            </p>
-            <div class="round-text-box" contenteditable="true">
-                <p>Tell us about your job</p>
-            </div>
+            
         </div>
     </main>
     <footer>
@@ -125,10 +158,6 @@
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
     <script src="{% static 'js/slick.min.js'%}"></script>
     <script src="{% static 'js/AntiOverflowFontResizer.min.js'%}"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script> -->
     <script src="{% static 'search.js'%}"></script>
 
 

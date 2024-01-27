@@ -67,6 +67,9 @@ class User(AbstractUser):
     def get_role(self):
         return Role(int(self.role)).name
     
+    def get_role_id(self):
+        return self.role
+    
     def get_first_name(self):
         return self.first_name
     
@@ -109,9 +112,10 @@ class JobOffer(models.Model):
     location = models.CharField(max_length=128)
     type_collabration = models.CharField(max_length=128)
     job_description = models.CharField(max_length=512, null=True, blank=True)
-    reqired_skils = models.CharField(max_length=512, null=True, blank=True)
-    company_description = models.CharField(max_length=512, null=True, blank=True)
+    # reqired_skils = models.CharField(max_length=512, null=True, blank=True)
+    # company_description = models.CharField(max_length=512, null=True, blank=True)
     author = models.ForeignKey(User, related_name='job_offer', on_delete=models.SET_NULL, null=True)
+    salary = models.IntegerField(null=True)
     
     def get_title(self): 
         return self.title

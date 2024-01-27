@@ -90,10 +90,10 @@
             
                 <div class="form-group">
                     <label for="gender">Gender</label>
-                    <select class="form-control" name="gender" value={{gender}}>
-                        <option value="-1">None</option>
-                        <option value="0">Male</option>
-                        <option value="1">Female</option>
+                    <select class="form-control" name="gender">
+                        <option value="-1" {% if gender == -1 %}selected{% endif %}>None</option>
+                        <option value="0" {% if gender == 0 %}selected{% endif %}>Male</option>
+                        <option value="1" {% if gender == 1 %}selected{% endif %}>Female</option>
                     </select>
                 </div>
 
@@ -106,12 +106,11 @@
                     <label for="description">Description</label>
                     <textarea class="form-control about-youself" name="description" rows="3" placeholder="Write something about yourself..." value={{description}}></textarea>
                 </div>
-
                 <div class="form-group">
                     <label for="role">Role</label>
-                    <select class="form-control" name="role" value={{role}}>
-                        <option value="0">Employer</option>
-                        <option value="1">Jobseeker</option>
+                    <select class="form-control" name="role">
+                        <option value="0" {% if role == 0 %}selected{% endif %}>Employer</option>
+                        <option value="1" {% if role == 1 %}selected{% endif %}>Jobseeker</option>
                     </select>
                 </div>
             
