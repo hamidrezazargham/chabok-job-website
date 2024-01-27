@@ -78,20 +78,20 @@ def view_job(request, pk):
         return render(request, 'singlejob.html', context)
 
 
-def view_job_list(request):
-    context = {}
-    if request.method == "GET":
-        user = request.user
-        try:
-            if user.get_role() == "EMPLOYER":
-                job_offers = find_jobOffers_by_user(user)
-                context = {
-                    "job_offers": jobOfferSerializer(job_offers, many=True).data
-                }
-                return render(request, 'viewjobs.html', context)
-        except:
-            return Response({}, status=status.HTTP_401_UNAUTHORIZED)
-    return Response({}, status=status.HTTP_400_BAD_REQUEST)
+# def view_job_list(request):
+#     context = {}
+#     if request.method == "GET":
+#         user = request.user
+#         try:
+#             if user.get_role() == "EMPLOYER":
+#                 job_offers = find_jobOffers_by_user(user)
+#                 context = {
+#                     "job_offers": jobOfferSerializer(job_offers, many=True).data
+#                 }
+#                 return render(request, 'viewjobs.html', context)
+#         except:
+#             return Response({}, status=status.HTTP_401_UNAUTHORIZED)
+#     return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
 def create_job(request):
