@@ -127,10 +127,12 @@ def edit_job(request, pk):
 
 def profile(request):
     user = request.user
-    context = userProfileSerializer(user)
-    if request.method == "POST":
-        user_profile = editUserProfileSerializer(request.POST)
-        if user_profile.is_valid(raise_exception=True):
-            request.user = update_user_profile(user, user_profile.validated_data)
-            return redirect('profile')
-    return render(request, 'profile.html', context)
+    if user is not None:
+        context = userProfileSerializer(user)
+        if request.method == "POST":
+            user_profile = editUserProfileSerializer(request.POST)
+            if user_profile.is_valid(raise_exception=True):
+                request.user = update_user_profile(user, user_profile.validated_data)
+                return redirect('profile')
+        return render(request, 'profile.html', context)
+    return redirect('login')
