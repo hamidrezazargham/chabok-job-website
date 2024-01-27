@@ -22,7 +22,7 @@ class userInfoSerializer(serializers.Serializer):
     role = serializers.SerializerMethodField("get_role")
     gender = serializers.SerializerMethodField("get_gender")
     age = serializers.IntegerField()
-    image_url = serializers.ImageField(use_url=True)
+    # image_url = serializers.ImageField(use_url=True)
     city = serializers.CharField(max_length=128)
     province = serializers.CharField(max_length=128)
     
@@ -109,12 +109,12 @@ class applicationSerializer(serializers.Serializer):
     
     
 class jobSeekerHomePageSerializer(serializers.Serializer):
-    image_url = serializers.SerializerMethodField("get_image")
+    # image_url = serializers.SerializerMethodField("get_image")
     applications = serializers.SerializerMethodField("get_applications")
     recomendations = serializers.SerializerMethodField("recommend")
     
-    def get_image(self, obj):
-        return obj.get_image()
+    # def get_image(self, obj):
+    #     return obj.get_image()
     
     def get_applications(self, obj):
         applications = applicationSerializer(Application.find_by_user_id(obj.id), many=True)
@@ -126,11 +126,11 @@ class jobSeekerHomePageSerializer(serializers.Serializer):
     
 
 class employerHomePageSerializer(serializers.Serializer):
-    image_url = serializers.SerializerMethodField("get_image")
+    # image_url = serializers.SerializerMethodField("get_image")
     job_offers = serializers.SerializerMethodField("get_jobOffers")
     
-    def get_image(self, obj):
-        return obj.get_image()
+    # def get_image(self, obj):
+    #     return obj.get_image()
     
     def get_jobOffers(self, obj):
         job_offers = jobOfferSerializer(JobOffer.find_by_user(obj), many=True)

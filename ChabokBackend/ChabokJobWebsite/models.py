@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User as User_
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 
@@ -33,7 +34,7 @@ class Status(models.IntegerChoices):
     WAITING = 0, _('WAITING')
     ACCEPTED = 1, _('ACCEPTED')
 
-class User(User_):
+class User(AbstractUser):
     role = models.IntegerField(
         choices=Role.choices,
         default=Role.JOB_SEEKER
@@ -45,13 +46,13 @@ class User(User_):
         blank=True
     )
     age = models.IntegerField(default=None, null=True)
-    image = models.ImageField(upload_to=user_directory_path, default=None, null=True)
+    # image = models.ImageField(upload_to=user_directory_path, default=None, null=True)
     province = models.CharField(max_length=128, default=None, null=True, blank=True)
     city = models.CharField(max_length=128, default=None, null=True, blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.SET_NULL, related_name='user', default=None, null=True)
     
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['username','email', 'role']
+    REQUIRED_FIELDS = ['email', 'role']
     
     def __str__(self):
         return self.username
@@ -71,7 +72,7 @@ class User(User_):
         return self.age
     
     def get_image(self):
-        if self.image is not None:
+        if self.image.url is not None:
             return self.image.url
         return None
     
@@ -132,7 +133,7 @@ class JobOffer(models.Model):
     
     @classmethod
     def find_by_user(cls, user):
-        return cls.objects.find(author=user)
+        return cls.objects.filter(author=user)
     
     @classmethod
     def get_all(cls):

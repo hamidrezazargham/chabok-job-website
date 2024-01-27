@@ -43,15 +43,15 @@ def home_page(request):
     if request.method == "GET":
         user = request.user
         print(user)
-        try:
+        # try:
             
-            if user.get_role() == "EMPLOYER":
-                context = employerHomePageSerializer(user).data
-            else:
-                context = jobSeekerHomePageSerializer(user).data
-            print('yo')
-        except:
-            return render(request, 'main.html', context)
+        if user.get_role() == "EMPLOYER":
+            context = employerHomePageSerializer(user).data
+        else:
+            context = jobSeekerHomePageSerializer(user).data
+        # print('yo')
+        # except:
+        #     return render(request, 'main.html', context)
             # return redirect('login')
     return render(request, 'main.html', context)
 
