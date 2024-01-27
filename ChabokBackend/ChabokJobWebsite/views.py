@@ -15,7 +15,7 @@ def sign_up(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Acount was created successfuly")
+            messages.success(request, "Acount created successfuly")
             return redirect('login')
     context = {'form': form}
     return render(request, 'signup.html', context)
@@ -43,7 +43,7 @@ def home_page(request):
     if request.method == "GET":
         user = request.user
         try:
-            if user.get_role() == "EMPLOYER":
+            if user.get_role() == "Employer":
                 job_offers = find_jobOffers_by_user(user)
                 context = {
                     "job_offers": jobOfferSerializer(job_offers, many=True).data
@@ -62,7 +62,7 @@ def view_job(request, pk):
     user = request.user
     job_offer = get_jobOffer_by_id(pk)
     try:
-        if user.get_role() == "EMPLOYER":
+        if user.get_role() == "Employer":
             context = {
                 "applications": viewJobApplicantsSerializer(job_offer).data
             }
@@ -78,28 +78,12 @@ def view_job(request, pk):
         return render(request, 'singlejob.html', context)
 
 
-# def view_job_list(request):
-#     context = {}
-#     if request.method == "GET":
-#         user = request.user
-#         try:
-#             if user.get_role() == "EMPLOYER":
-#                 job_offers = find_jobOffers_by_user(user)
-#                 context = {
-#                     "job_offers": jobOfferSerializer(job_offers, many=True).data
-#                 }
-#                 return render(request, 'viewjobs.html', context)
-#         except:
-#             return Response({}, status=status.HTTP_401_UNAUTHORIZED)
-#     return Response({}, status=status.HTTP_400_BAD_REQUEST)
-
-
 def create_job(request):
     context = {}
     user = request.user
     if request.method == "POST":
         try:
-            if user.get_role() == "EMPLOYER":
+            if user.get_role() == "Employer":
                 job_offer = jobOfferSerializer(request.POST)
                 if job_offer.is_valid(raise_exception=True):
                     jobOffer = create_job_offer(job_offer.validated_data)
@@ -136,11 +120,12 @@ def edit_job(request, pk):
 def profile(request):
     user = request.user
     if user is not None:
-        context = userProfileSerializer(user)
+        context = userProfileSerializer(user).data
         if request.method == "POST":
             user_profile = editUserProfileSerializer(request.POST)
-            if user_profile.is_valid(raise_exception=True):
-                request.user = update_user_profile(user, user_profile.validated_data)
-                return redirect('profile')
+            request.user = update_user_profile(user, user_profile.data)
+            messages.success(request, "Profile updated successfuly")
+            return redirect('profile')
+        print(context)
         return render(request, 'profile.html', context)
     return redirect('login')

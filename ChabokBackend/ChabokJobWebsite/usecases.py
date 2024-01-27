@@ -34,12 +34,10 @@ def update_user_profile(user, user_profile):
     user.role = user_profile['role']
     user.gender = user_profile['gender']
     user.age = user_profile['age']
-    user.image_url = user_profile['image_url']
     user.city = user_profile['city']
-    user.province = user_profile['province']
-    resume = Resume(file_url=user_profile['resume'])
-    resume.save()
-    user.resume = resume
+    # resume = Resume(file_url=user_profile['resume'])
+    # resume.save()
+    # user.resume = resume
     user.save()
     return user
 

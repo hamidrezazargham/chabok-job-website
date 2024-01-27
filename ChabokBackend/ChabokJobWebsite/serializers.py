@@ -23,8 +23,8 @@ class userInfoSerializer(serializers.Serializer):
     gender = serializers.SerializerMethodField("get_gender")
     age = serializers.IntegerField()
     # image_url = serializers.ImageField(use_url=True)
-    city = serializers.CharField(max_length=128)
-    province = serializers.CharField(max_length=128)
+    city = serializers.CharField(max_length=128, allow_blank=True, allow_null=True)
+    description = serializers.CharField(max_length=512, allow_blank=True, allow_null=True)
     
     def get_role(self, obj):
         return obj.get_role()
@@ -33,17 +33,48 @@ class userInfoSerializer(serializers.Serializer):
         return obj.get_gender()
 
 
-class userProfileSerializer(userInfoSerializer):
+class userProfileSerializer(serializers.Serializer):
+    username = serializers.SerializerMethodField("get_username")
+    email = serializers.SerializerMethodField("get_email")
+    first_name = serializers.SerializerMethodField("get_first_name")
+    last_name = serializers.SerializerMethodField("get_last_name")
+    age = serializers.SerializerMethodField("get_age")
+    gender = serializers.SerializerMethodField("get_gender")
+    city = serializers.SerializerMethodField("get_city")
+    description = serializers.SerializerMethodField("get_description")
+    role = serializers.SerializerMethodField("get_role")
     resume = serializers.SerializerMethodField("get_resume")
-    applications = serializers.SerializerMethodField("get_applications")
+    
+    def get_username(self, obj):
+        return obj.get_username()
+    
+    def get_email(self, obj):
+        return obj.get_email()
+    
+    def get_first_name(self, obj):
+        return obj.get_first_name()
+    
+    def get_last_name(self, obj):
+        return obj.get_last_name()
+    
+    def get_age(self, obj):
+        return obj.get_age()
+    
+    def get_gender(self, obj):
+        return obj.get_gender()
+    
+    def get_city(self, obj):
+        return obj.get_city()
+    
+    def get_description(self, obj):
+        return obj.get_description()
+    
+    def get_role(self, obj):
+        return obj.get_role()
     
     def get_resume(self, obj):
         resume = resumeSerializer(obj.get_resume())
         return resume.data
-    
-    def get_applications(self, obj):
-        applications = applicationSerializer(Application.find_by_user(obj), many=True)
-        return applications.data
         
 class editUserProfileSerializer(userInfoSerializer):
     role = serializers.IntegerField(
@@ -57,7 +88,7 @@ class editUserProfileSerializer(userInfoSerializer):
         default=None,
         allow_null=True,
     )
-    resume = serializers.FileField(allow_empty_file=False, use_url=True)
+    # resume = serializers.FileField(allow_empty_file=False, use_url=True)
 
 
 class jobOfferSerializer(serializers.Serializer):

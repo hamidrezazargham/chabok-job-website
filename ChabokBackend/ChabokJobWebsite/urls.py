@@ -7,7 +7,6 @@ urlpatterns = [
     path("logout/", views.logout_user, name="logout"),
     path("home/", views.home_page, name="home"),
     path("jobs/<str:pk>/", views.view_job, name="viewjob"),
-    # path("jobs/", views.view_job_list, name="viewjoblist"),
     path("profile/", views.profile, name="profile"),
     path("addjob/", views.create_job, name="createjob"),
     path("deletejob/<str:pk>", views.delete_job, name="deletejob"),

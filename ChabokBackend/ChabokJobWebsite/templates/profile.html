@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
-
+    <title>Profile</title>
+    {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css'%}">
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{% static 'css/all.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/all.min-free.css'%}">
     <link rel="stylesheet" href="{% static 'profile.css'%}">
-    <!-- Custom CSS -->
 </head>
 
 
@@ -24,7 +21,7 @@
             <div class="row header-top ">
                 <div class="col-3">
                     <div class="profile-pic-container ml-5">
-                        <img src="images/andrew.jpg" alt="Profile Pic" class="profile-pic-header">
+                        <img src="{% static 'images/andrew.jpg'%}" alt="Profile Pic" class="profile-pic-header">
                     </div>
                 </div>
                 <div class="col-4">
@@ -40,9 +37,9 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <div class="text-center dropdown-text">Menu</div>
-                            <a class="dropdown-item" href="{% url 'profile' %}">edit profile</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">home page</a>
-                            <a class="dropdown-item" href="{% url 'logout' %}">log out</a>
+                            <a class="dropdown-item" href="{% url 'home' %}">Home</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                         </div>
                     </div>
                 </div>
@@ -53,57 +50,76 @@
         <div class="container-fluid main-container">
 
             <div class="edit-profile-container ">
+                {% for message in messages %}
+                    <p id="messages">{{message}}</p>
+                {% endfor %}
+                <form id="profileForm" method="POST" action="">
+                {% csrf_token %}
                 <div class="profile-pic" >
-                    <img src="images/andrew.jpg" alt="Profile Picture" id="profileImage">
+                    <img src="{% static 'images/andrew.jpg'%}" alt="Profile Picture" id="profileImage">
                     <label for="fileInput" class="btn btn-change-pic">Select Image</label>
                     <input type="file" id="fileInput" accept="image/*" onchange="loadImage(this)">
                 </div>
-            
+
                 <div class="form-group">
-                    <label for="role">Role</label>
-                    <select class="form-control" id="role">
-                        <option value="employer">Employer</option>
-                        <option value="jobseeker">Jobseeker</option>
-                    </select>
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Enter your username..." value={{username}}>
                 </div>
-            
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                </div>
-            
+
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    <input type="email" class="form-control" name="email" placeholder="Enter your email..." value={{email}}>
                 </div>
             
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    <label for="first_name">First name</label>
+                    <input type="text" class="form-control" name="first_name" placeholder="Enter your first name..." value={{first_name}}>
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last name</label>
+                    <input type="text" class="form-control" name="last_name" placeholder="Enter your last name..." value={{last_name}}>
                 </div>
             
-                <div class="form-group gender-options">
+                
+            
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="text" class="form-control" name="age" placeholder="Enter your age..." value={{age}}>
+                </div>
+            
+                <div class="form-group">
                     <label for="gender">Gender</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input role-selector" type="radio" name="gender" id="male" value="male">
-                        <label class="form-check-label" for="male">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input role-selector" type="radio" name="gender" id="female" value="female">
-                        <label class="form-check-label" for="female">Female</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input role-selector" type="radio" name="gender" id="none" value="none">
-                        <label class="form-check-label " for="female">None</label>
-                    </div>
+                    <select class="form-control" name="gender" value={{gender}}>
+                        <option value="-1">None</option>
+                        <option value="0">Male</option>
+                        <option value="1">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" name="city" placeholder="Enter your city..." value={{city}}>
                 </div>
             
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control about-youself" id="description" rows="3" placeholder="Tell us about yourself"></textarea>
+                    <textarea class="form-control about-youself" name="description" rows="3" placeholder="Write something about yourself..." value={{description}}></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select class="form-control" name="role" value={{role}}>
+                        <option value="0">Employer</option>
+                        <option value="1">Jobseeker</option>
+                    </select>
                 </div>
             
-                <button class="btn-upload">Upload Resume</button>
+                {% comment %} <button class="btn-upload">Upload Resume</button> {% endcomment %}
+
+                <div>
+                    <button class="btn-upload" type="submit">Update profile</button>
+                </div>
             </div>
         </div>
     </main>
@@ -143,15 +159,10 @@
         </div>
     </footer>
 
-    <!-- Add your content here -->
     <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
     <script src="{% static 'js/popper.min.js'%}"></script>
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
     <script src="{% static 'js/slick.min.js'%}"></script>
     <script src="{% static 'js/AntiOverflowFontResizer.min.js'%}"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script> -->
     <script src="{% static 'profile.js'%}"></script>
 </html>

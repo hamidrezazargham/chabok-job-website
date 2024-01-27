@@ -22,12 +22,13 @@ class Resume(models.Model):
         return cls.objects.get(id=id)
     
 class Gender(models.IntegerChoices):
-    MALE = 0, _('MALE')
-    FEMALE = 1, _('FEMALE')
+    MALE = 0, _('Male')
+    FEMALE = 1, _('Female')
+    NONE = -1, _('None')
     
 class Role(models.IntegerChoices):
-    EMPLOYER = 0, _('EMPLOYER')
-    JOB_SEEKER = 1, _('JOB_SEEKER')
+    EMPLOYER = 0, _('Employer')
+    JOB_SEEKER = 1, _('Jobseeker')
     
 class Status(models.IntegerChoices):
     REJECTED = -1, _('REJECTED')
@@ -45,11 +46,11 @@ class User(AbstractUser):
         null=True,
         blank=True
     )
-    age = models.IntegerField(default=None, null=True)
+    age = models.IntegerField(default=21, null=True, blank=True)
     # image = models.ImageField(upload_to=user_directory_path, default=None, null=True)
-    province = models.CharField(max_length=128, default=None, null=True, blank=True)
-    city = models.CharField(max_length=128, default=None, null=True, blank=True)
+    city = models.CharField(max_length=128, default='', null=True, blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.SET_NULL, related_name='user', default=None, null=True)
+    description = models.CharField(max_length=512, default='', null=True, blank=True)
     
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'role']
@@ -57,11 +58,20 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
     
+    def get_username(self):
+        return self.username
+    
+    def get_email(self):
+        return self.email
+    
     def get_role(self):
         return Role(int(self.role)).name
     
-    def get_fullname(self):
-        return f"{self.first_name} {self.last_name}"
+    def get_first_name(self):
+        return self.first_name
+    
+    def get_last_name(self):
+        return self.last_name
     
     def get_gender(self):
         if self.gender != None:
@@ -76,14 +86,14 @@ class User(AbstractUser):
             return self.image.url
         return None
     
-    def get_province(self):
-        return self.province
-    
     def get_city(self):
         return self.city
     
     def get_resume(self):
         return self.resume
+    
+    def get_description(self):
+        return self.description
         
     @classmethod
     def find_by_id(cls, id):
