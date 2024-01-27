@@ -41,9 +41,9 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <div class="text-center dropdown-text">Menu</div>
-                            <a class="dropdown-item" href="#">edit profile</a>
-                            <a class="dropdown-item" href="#">home page</a>
-                            <a class="dropdown-item" href="#">log out</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">edit profile</a>
+                            <a class="dropdown-item" href="{% url 'home' %}">home page</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">log out</a>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             <div class="row"></div>
 
             <div class="slider mt-5">
-                <a href="viewjobs.html"><i class="fas fa-chevron-left icon-back"></i><p class="search-text mb-5">job listing</p></a>
+                <a href="{% url 'viewjoblist' %}"><i class="fas fa-chevron-left icon-back"></i><p class="search-text mb-5">job listing</p></a>
                 <div class="job-box">
                     <div class="job-name">Network Engineer</div>
                     <div class="view-job-tag">View Job</div>
