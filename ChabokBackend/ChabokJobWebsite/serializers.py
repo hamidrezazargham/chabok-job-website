@@ -181,11 +181,3 @@ class viewJobApplicantsSerializer(serializers.Serializer):
         applications = applicationSerializer(Application.find_by_job_offer(obj), many=True)
         return applications.data
 
-
-class viewJobSerializer(serializers.Serializer):
-    job_offer = serializers.SerializerMethodField("get_jobOffer")
-    
-    def get_jobOffer(self, obj):
-        job_offer = jobOfferSerializer(obj)
-        return job_offer.data
-    

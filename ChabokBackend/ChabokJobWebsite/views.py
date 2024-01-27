@@ -61,20 +61,17 @@ def view_job(request, pk):
     context = {}
     user = request.user
     job_offer = get_jobOffer_by_id(pk)
+    context = jobOfferSerializer(job_offer).data
     try:
         if user.get_role() == "EMPLOYER":
-            context = {
-                "applications": viewJobApplicantsSerializer(job_offer).data
-            }
+            context["applications"] = viewJobApplicantsSerializer(job_offer).data
             return render(request, 'viewjobapplicants.html', context)
         else:
-            context = viewJobSerializer(job_offer).data
             if request.method == "POST":
                 application = create_application(user, job_offer)
                 return redirect('viewjob', pk=pk)
             return render(request, 'singlejob.html', context)
     except:
-        context = viewJobSerializer(job_offer).data
         return render(request, 'singlejob.html', context)
 
 
@@ -84,10 +81,7 @@ def create_job(request):
     # try:
     if user.get_role() == "EMPLOYER":
         if request.method == "POST":
-            print(request.POST)
             job_offer = jobOfferSerializer(request.POST)
-            print(job_offer.data)
-            print("#" * 50)
             jobOffer = create_job_offer(job_offer.data, user)
             return redirect('viewjob', pk=jobOffer.id)
         return render(request, 'addjob.html', context)
