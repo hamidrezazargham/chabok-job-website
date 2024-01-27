@@ -100,7 +100,7 @@ class JobOffer(models.Model):
     job_description = models.CharField(max_length=512, null=True, blank=True)
     reqired_skils = models.CharField(max_length=512, null=True, blank=True)
     company_description = models.CharField(max_length=512, null=True, blank=True)
-    author = models.ForeignKey(User, related_name='job_offer')
+    author = models.ForeignKey(User, related_name='job_offer', on_delete=models.SET_NULL, null=True)
     
     def get_title(self): 
         return self.title

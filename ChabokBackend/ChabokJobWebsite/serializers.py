@@ -47,14 +47,15 @@ class userProfileSerializer(userInfoSerializer):
         
 class editUserProfileSerializer(userInfoSerializer):
     role = serializers.IntegerField(
-        choices=Role.choices,
+        max_value=1,
+        min_value=0,
         default=Role.JOB_SEEKER
     )
     gender = serializers.IntegerField(
-        choices=Gender.choices, 
+        max_value=1,
+        min_value=0,
         default=None,
-        null=True,
-        blank=True
+        allow_null=True,
     )
     resume = serializers.FileField(allow_empty_file=False, use_url=True)
 
@@ -64,9 +65,9 @@ class jobOfferSerializer(serializers.Serializer):
     company_name = serializers.CharField(max_length=128)
     location = serializers.CharField(max_length=128)
     type_collabration = serializers.CharField(max_length=128)
-    job_description = serializers.CharField(max_length=512, null=True, blank=True)
-    reqired_skils = serializers.CharField(max_length=512, null=True, blank=True)
-    company_description = serializers.CharField(max_length=512, null=True, blank=True)
+    job_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    reqired_skils = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    company_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
     author = serializers.SerializerMethodField("get_author")
     
     def get_author(self, obj):
@@ -79,9 +80,9 @@ class editJobOfferSerializer(serializers.Serializer):
     company_name = serializers.CharField(max_length=128)
     location = serializers.CharField(max_length=128)
     type_collabration = serializers.CharField(max_length=128)
-    job_description = serializers.CharField(max_length=512, null=True, blank=True)
-    reqired_skils = serializers.CharField(max_length=512, null=True, blank=True)
-    company_description = serializers.CharField(max_length=512, null=True, blank=True)
+    job_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    reqired_skils = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    company_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
 
 
 class applicationSerializer(serializers.Serializer):
