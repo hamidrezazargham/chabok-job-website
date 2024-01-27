@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "1765c9c6-f713-4823-88b3-5b1f352ecbc4",
+		"name": "chabok",
+		"description": "test for urls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32607758"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"helloworld\",\r\n    \"email\": \"helloworld@gmail.com\",\r\n    \"password\": \"randomnumber\",\r\n    \"role\" : \"employer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"helloworld\",\r\n    \"password\": \"randomnumber\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/home/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"home",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/logout/?id=1234",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"logout",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"title\",\r\n    \"company_name'\": \"chabok'\",\r\n    \"location\": \"tehran\",\r\n    \"type_collabration\": \"full-time\",\r\n    \"company_description\": \"description\",\r\n    \"job_description\": \"description\",\r\n    \"reqired_skils\": \"skils\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/jobs/create/?id=1234",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"jobs",
+						"create",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1234",
+							"description": "employer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/jobs/delete/?id=1234",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"jobs",
+						"delete",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit-job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"title\",\r\n    \"company_name'\": \"chabok'\",\r\n    \"location\": \"tehran\",\r\n    \"type_collabration\": \"full-time\",\r\n    \"company_description\": \"description\",\r\n    \"job_description\": \"description\",\r\n    \"reqired_skils\": \"skils\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/jobs/edit/?id=1234",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"jobs",
+						"edit",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/profile/?id=1234",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"profile",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1234",
+							"description": "employer/jobseeker"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit-profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"helloworld\",\r\n    \"first_name\" : \"hello\",\r\n    \"last_name\" : \"world\",\r\n    \"email\" : \"helloworld@gmail.com\",\r\n    \"role\" : \"employer\",\r\n    \"gender\" : \"None\",\r\n    \"age\" : \"20\",\r\n    \"image_url\" : \"url\",\r\n    \"city\" : \"tehran\",\r\n    \"province\" : \"tehran\",\r\n    \"resume\" : \"url\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/profile/edit/?id=1234",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"profile",
+						"edit",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1234",
+							"description": "jobseker/employer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apply-job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"resume\" : \"url\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/jobs/apply/?username=234&job-id=567",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"jobs",
+						"apply",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "234",
+							"description": "jobseeker id"
+						},
+						{
+							"key": "job-id",
+							"value": "567",
+							"description": "jon id"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
