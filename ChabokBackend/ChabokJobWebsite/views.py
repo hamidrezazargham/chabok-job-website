@@ -43,7 +43,7 @@ def home_page(request):
     if request.method == "GET":
         user = request.user
         try:
-            if user.get_role() == "Employer":
+            if user.get_role() == "EMPLOYER":
                 job_offers = find_jobOffers_by_user(user)
                 context = {
                     "job_offers": jobOfferSerializer(job_offers, many=True).data
@@ -62,7 +62,7 @@ def view_job(request, pk):
     user = request.user
     job_offer = get_jobOffer_by_id(pk)
     try:
-        if user.get_role() == "Employer":
+        if user.get_role() == "EMPLOYER":
             context = {
                 "applications": viewJobApplicantsSerializer(job_offer).data
             }
@@ -83,7 +83,7 @@ def create_job(request):
     user = request.user
     if request.method == "POST":
         try:
-            if user.get_role() == "Employer":
+            if user.get_role() == "EMPLOYER":
                 job_offer = jobOfferSerializer(request.POST)
                 if job_offer.is_valid(raise_exception=True):
                     jobOffer = create_job_offer(job_offer.validated_data)
@@ -126,6 +126,5 @@ def profile(request):
             request.user = update_user_profile(user, user_profile.data)
             messages.success(request, "Profile updated successfuly")
             return redirect('profile')
-        print(context)
         return render(request, 'profile.html', context)
     return redirect('login')
