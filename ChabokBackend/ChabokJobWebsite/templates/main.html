@@ -59,6 +59,7 @@
             </div>
 
             <div class="slider mt-5">
+                {% for job_offer in context.recommendations %}
                 <div class="slider-item">
                     <div class="row">
                         <div class="col-6">
@@ -66,80 +67,20 @@
                         </div>
                         <div class="col-6">
                             <div class="job-info">
-                                <h3 class="job-title">Network Engineer</h3>   
-                                <p><i class="fas fa-briefcase"></i> Microsoft</p>
-                                <p><i class="far fa-clock"></i> Full Time</p>
-                                <p><i class="fas fa-dollar-sign"></i> 13000$ / month </p>
-                                <p><i class="fas fa-map-marker-alt"></i> Microsoft HQ </p>
+                                <h3 class="job-title">{{job_offer.title}}</h3>   
+                                <p><i class="fas fa-briefcase"></i>{{job_offer.company_name}}.</p>
+                                <p><i class="far fa-clock"></i>{{job_ofer.type_collabration}}</p>
+                                <p><i class="fas fa-dollar-sign"></i>{{job_offer.salary}}</p>
+                                <p><i class="fas fa-map-marker-alt"></i>{{job_offer.location}}</p>
                                 <div class="btn-container">
                                     <button class="btn btn-send-resume">Send Resume</button>
-                                    <button class="btn  btn-open-job">Open Job</button>
+                                    <button class="btn  btn-open-job">View Job</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="slider-item">
-                    <div class="row">
-                        <div class="col-6">
-                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
-                        </div>
-                        <div class="col-6">
-                            <div class="job-info">
-                                <h3 class="job-title">Machine Learning Engineer </h3>   
-                                <p><i class="fas fa-briefcase"></i> Microsoft</p>
-                                <p><i class="far fa-clock"></i> Full Time</p>
-                                <p><i class="fas fa-dollar-sign"></i> 20000$ / month </p>
-                                <p><i class="fas fa-map-marker-alt"></i> Microsoft HQ </p>
-                                <div class="btn-container">
-                                    <button class="btn btn-send-resume">Send Resume</button>
-                                    <button class="btn  btn-open-job">Open Job</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <div class="row">
-                        <div class="col-6">
-                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
-                        </div>
-                        <div class="col-6">
-                            <div class="job-info">
-                                <h3 class="job-title">UI/UX Designer</h3>   
-                                <p><i class="fas fa-briefcase"></i> Microsoft</p>
-                                <p><i class="far fa-clock"></i> Part Time</p>
-                                <p><i class="fas fa-dollar-sign"></i> 15000$ / month </p>
-                                <p><i class="fas fa-map-marker-alt"></i> Microsoft HQ </p>
-                                <div class="btn-container">
-                                    <button class="btn btn-send-resume">Send Resume</button>
-                                    <button class="btn  btn-open-job">Open Job</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <div class="row">
-                        <div class="col-6">
-                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
-                        </div>
-                        <div class="col-6">
-                            <div class="job-info">
-                                <h3 class="job-title">Software Engineer</h3>   
-                                <p><i class="fas fa-briefcase"></i> Microsoft</p>
-                                <p><i class="far fa-clock"></i> Full Time</p>
-                                <p><i class="fas fa-dollar-sign"></i> 10000$ / month </p>
-                                <p><i class="fas fa-map-marker-alt"></i> Microsoft HQ </p>
-                                <div class="btn-container">
-                                    <button class="btn btn-send-resume">Send Resume</button>
-                                    <button class="btn  btn-open-job">Open Job</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
             <div class="job-app-container">
                 <div class="row">
                     <div class="col-12">
@@ -149,20 +90,30 @@
                 <div class="job-app-shadow">
                     <div class="row">
                         <div class="col-7 job-app-status mt-5">    
+                            {% for application in context.applications %}
                             <div class="job-status-item">
                                 <div class="row">
                                     <div class="col-6 ">
                                         <div class="job-status-company">        
-                                            Machine Learning Engineer / Microsoft
+                                            {{application.job_offer.title}}
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="job-status-icon">
+                                            {% if application.status == "ACCEPTED" %}
                                             <i class="fas fa-check-circle sucess"></i>
+                                            {% endif %}
+                                            {% if application.status == "ACCEPTED" %}
+                                            <i class="fas fa-check-circle sucess"></i>
+                                            {% endif %}
+                                            {% if application.status == "ACCEPTED" %}
+                                            <i class="fas fa-check-circle sucess"></i>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                             <div class="job-status-item">
                                 <div class="row">
                                     <div class="col-6 ">

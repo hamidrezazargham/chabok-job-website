@@ -68,6 +68,7 @@ class jobOfferSerializer(serializers.Serializer):
     job_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
     reqired_skils = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
     company_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
+    salary = serializers.CharField(max_length=128)
     author = serializers.SerializerMethodField("get_author")
     
     def get_author(self, obj):

@@ -44,7 +44,7 @@ class User(User_):
         null=True,
         blank=True
     )
-    age = models.IntegerField()
+    age = models.IntegerField(default=None, null=True)
     image = models.ImageField(upload_to=user_directory_path, default=None, null=True)
     province = models.CharField(max_length=128, default=None, null=True, blank=True)
     city = models.CharField(max_length=128, default=None, null=True, blank=True)
