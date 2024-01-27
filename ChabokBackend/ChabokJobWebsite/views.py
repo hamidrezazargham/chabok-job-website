@@ -42,18 +42,19 @@ def home_page(request):
     context = {}
     if request.method == "GET":
         user = request.user
-        print(user)
-        # try:
-            
-        if user.get_role() == "EMPLOYER":
-            context = employerHomePageSerializer(user).data
-        else:
-            context = jobSeekerHomePageSerializer(user).data
-        # print('yo')
-        # except:
-        #     return render(request, 'main.html', context)
-            # return redirect('login')
-    return render(request, 'main.html', context)
+        try:
+            if user.get_role() == "EMPLOYER":
+                job_offers = find_jobOffers_by_user(user)
+                context = {
+                    "job_offers": jobOfferSerializer(job_offers, many=True).data
+                }
+                return render(request, 'viewjobs.html', context)
+            else:
+                context = jobSeekerHomePageSerializer(user).data
+                return render(request, 'main.html', context)
+        except:
+            return redirect('login')
+    return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
 def view_job(request, pk):
@@ -62,7 +63,9 @@ def view_job(request, pk):
     job_offer = get_jobOffer_by_id(pk)
     try:
         if user.get_role() == "EMPLOYER":
-            context = viewJobApplicantsSerializer(job_offer).data
+            context = {
+                "applications": viewJobApplicantsSerializer(job_offer).data
+            }
             return render(request, 'viewjobapplicants.html', context)
         else:
             context = viewJobSerializer(job_offer).data
@@ -74,20 +77,21 @@ def view_job(request, pk):
         context = viewJobSerializer(job_offer).data
         return render(request, 'singlejob.html', context)
 
-def view_job_list(request):
-    user = request.user
-    try:
-        if user.get_role() == "EMPLOYER":
-            context = {}
-            if request.method == "GET":
-                job_offers = find_jobOffers_by_user(user)
-                context = jobOfferSerializer(job_offers, many=True).data
-                return render(request, 'viewjobs.html', context)
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
-    except:
-        pass
-    return Response({}, status=status.HTTP_401_UNAUTHORIZED)
 
+def view_job_list(request):
+    context = {}
+    if request.method == "GET":
+        user = request.user
+        try:
+            if user.get_role() == "EMPLOYER":
+                job_offers = find_jobOffers_by_user(user)
+                context = {
+                    "job_offers": jobOfferSerializer(job_offers, many=True).data
+                }
+                return render(request, 'viewjobs.html', context)
+        except:
+            return Response({}, status=status.HTTP_401_UNAUTHORIZED)
+    return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
 def create_job(request):
