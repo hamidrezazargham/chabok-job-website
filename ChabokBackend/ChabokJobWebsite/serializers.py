@@ -100,11 +100,15 @@ class jobOfferSerializer(serializers.Serializer):
     # reqired_skils = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
     # company_description = serializers.CharField(max_length=512, allow_null=True, allow_blank=True)
     salary = serializers.IntegerField(allow_null=True)
+    id = serializers.SerializerMethodField("get_id")
     # author = serializers.SerializerMethodField("get_author")
     
     # def get_author(self, obj):
     #     author = userInfoSerializer(obj.get_author())
     #     return author.data
+    
+    def get_id(self, obj):
+        return obj.id
     
 
 class editJobOfferSerializer(serializers.Serializer):

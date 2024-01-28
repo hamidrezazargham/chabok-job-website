@@ -25,7 +25,7 @@
             <div class="row header-top ">
                 <div class="col-3">
                     <div class="profile-pic-container ml-5">
-                        <img src="images/andrew.jpg" alt="Profile Pic" class="profile-pic">
+                        <img src="{% static 'images/andrew.jpg'%}" alt="Profile Pic" class="profile-pic">
                     </div>
                 </div>
                 <div class="col-4">
@@ -59,12 +59,12 @@
                 <a href="{% url 'home' %}"><i class="fas fa-chevron-left icon-back"></i><p class="search-text mb-5">job listing</p></a>
                 <div class="job-box">
                     <div class="job-name">Network Engineer</div>
-                    <div class="view-job-tag">View Job</div>
+                    <a href="{% url 'editjob' pk=id %}"><div class="view-job-tag">View Job</div></a>
                 </div>
                 <p class="people-text mt-5">People</p>
                 <div class="applicant-box">
                     <div class="applicant-info">
-                        <img class="applicant-image" src="images/andrew.jpg" alt="Person Image">
+                        <img class="applicant-image" src="{% static 'images/andrew.jpg'%}" alt="Person Image">
                         <div class="applicant-details">
                             <div class="applicant-name">John Doe</div>
                             <div class="applicant-email">john.doe@example.com</div>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="applicant-box">
                     <div class="applicant-info">
-                        <img class="applicant-image" src="images/andrew.jpg" alt="Person Image">
+                        <img class="applicant-image" src="{% static 'images/andrew.jpg'%}" alt="Person Image">
                         <div class="applicant-details">
                             <div class="applicant-name">John Doe</div>
                             <div class="applicant-email">john.doe@example.com</div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="applicant-box mb-5">
                     <div class="applicant-info">
-                        <img class="applicant-image" src="images/andrew.jpg" alt="Person Image">
+                        <img class="applicant-image" src="{% static 'images/andrew.jpg'%}" alt="Person Image">
                         <div class="applicant-details">
                             <div class="applicant-name">John Doe</div>
                             <div class="applicant-email">john.doe@example.com</div>
