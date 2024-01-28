@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css'%}">
-    <link rel="stylesheet" type="text/css" href="{% static css/slick-theme.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css'%}">
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{% static 'css/all.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/all.min-free.css'%}">
@@ -25,7 +25,7 @@
             <div class="row header-top ">
                 <div class="col-3">
                     <div class="profile-pic-container ml-5">
-                        <img src="images/andrew.jpg" alt="Profile Pic" class="profile-pic">
+                        <img src="{% static 'images/andrew.jpg'%}" alt="Profile Pic" class="profile-pic">
                     </div>
                 </div>
                 <div class="col-4">
@@ -56,15 +56,15 @@
             <div class="row"></div>
 
             <div class="slider mt-5">
-                <a href="{% url 'viewjoblist' %}"><i class="fas fa-chevron-left icon-back"></i><p class="search-text mb-5">job listing</p></a>
+                <a href="{% url 'home' %}"><i class="fas fa-chevron-left icon-back"></i><p class="search-text mb-5">job listing</p></a>
                 <div class="job-box">
                     <div class="job-name">Network Engineer</div>
-                    <div class="view-job-tag">View Job</div>
+                    <a href="{% url 'editjob' pk=id %}"><div class="view-job-tag">View Job</div></a>
                 </div>
                 <p class="people-text mt-5">People</p>
                 <div class="applicant-box">
                     <div class="applicant-info">
-                        <img class="applicant-image" src="images/andrew.jpg" alt="Person Image">
+                        <img class="applicant-image" src="{% static 'images/andrew.jpg'%}" alt="Person Image">
                         <div class="applicant-details">
                             <div class="applicant-name">John Doe</div>
                             <div class="applicant-email">john.doe@example.com</div>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="applicant-box">
                     <div class="applicant-info">
-                        <img class="applicant-image" src="images/andrew.jpg" alt="Person Image">
+                        <img class="applicant-image" src="{% static 'images/andrew.jpg'%}" alt="Person Image">
                         <div class="applicant-details">
                             <div class="applicant-name">John Doe</div>
                             <div class="applicant-email">john.doe@example.com</div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="applicant-box mb-5">
                     <div class="applicant-info">
-                        <img class="applicant-image" src="images/andrew.jpg" alt="Person Image">
+                        <img class="applicant-image" src="{% static 'images/andrew.jpg'%}" alt="Person Image">
                         <div class="applicant-details">
                             <div class="applicant-name">John Doe</div>
                             <div class="applicant-email">john.doe@example.com</div>

@@ -7,14 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css'%}">
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{% static 'css/all.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/all.min-free.css'%}">
-    <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
-    <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
     <link rel="stylesheet" href="{% static 'viewjobs.css'%}">
     <title>Search Results</title>
 </head>
@@ -25,7 +21,7 @@
             <div class="row header-top ">
                 <div class="col-3">
                     <div class="profile-pic-container ml-5">
-                        <img src="images/andrew.jpg" alt="Profile Pic" class="profile-pic">
+                        <img src="{% static 'images/andrew.jpg'%}" alt="Profile Pic" class="profile-pic">
                     </div>
                 </div>
                 <div class="col-4">
@@ -41,9 +37,9 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <div class="text-center dropdown-text">Menu</div>
-                            <a class="dropdown-item" href="{% url 'profile' %}">edit profile</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">home page</a>
-                            <a class="dropdown-item" href="{% url 'logout' %}">log out</a>
+                            <a class="dropdown-item" href="{% url 'home' %}">Home</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                         </div>
                     </div>
                 </div>
@@ -63,82 +59,27 @@
             </div>
 
             <div class="slider mt-5">
+                {% for job in job_offers%}
                 <div class="slider-item">
                     <div class="row">
                         <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
+                            <img class="job-image" src="{% static 'images/company.jpeg'%}" alt="Job Image">
                         </div>
                         <div class="col-6">
                             <div class="job-info">
-                                <h3 class="job-title">Network Engineer</h3>   
-                                <p><i class="fas fa-briefcase"></i> Microsoft</p>
-                                <p><i class="far fa-clock"></i> Full Time</p>
-                                <p><i class="fas fa-dollar-sign"></i> 13000$ / month </p>
-                                <p><i class="fas fa-map-marker-alt"></i> Microsoft HQ </p>
+                                <h3 class="job-title"> {{job.title}} </h3>   
+                                <p><i class="fas fa-briefcase"></i> {{job.company_name}} </p>
+                                <p><i class="far fa-clock"></i> {{job.type_collabration}} </p>
+                                <p><i class="fas fa-dollar-sign"></i> {{job.salary}} $ / month </p>
+                                <p><i class="fas fa-map-marker-alt"></i> {{job.location}} </p>
                                 <div class="btn-container">
-                                    <a><button class="btn  btn-open-job">View Job</button></a>
+                                    <a href={% url 'viewjob' pk=job.id %}><button class="btn  btn-open-job">View Job</button></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="slider-item">
-                    <div class="row">
-                        <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
-                        </div>
-                        <div class="col-6">
-                            <div class="job-info">
-                                <h3 class="job-title">Machine Learning Engineer </h3>   
-                                <p><i class="fas fa-briefcase"></i> Microsoft</p>
-                                <p><i class="far fa-clock"></i> Full Time</p>
-                                <p><i class="fas fa-dollar-sign"></i> 20000$ / month </p>
-                                <p><i class="fas fa-map-marker-alt"></i> Microsoft HQ </p>
-                                <div class="btn-container">
-                                    <a><button class="btn  btn-open-job">View Job</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <div class="row">
-                        <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
-                        </div>
-                        <div class="col-6">
-                            <div class="job-info">
-                                <h3 class="job-title">UI/UX Designer</h3>   
-                                <p><i class="fas fa-briefcase"></i> Microsoft</p>
-                                <p><i class="far fa-clock"></i> Part Time</p>
-                                <p><i class="fas fa-dollar-sign"></i> 15000$ / month </p>
-                                <p><i class="fas fa-map-marker-alt"></i> Microsoft HQ </p>
-                                <div class="btn-container">
-                                    <a><button class="btn  btn-open-job">View Job</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <div class="row">
-                        <div class="col-6">
-                            <img class="job-image" src="images/company.jpeg" alt="Job Image">
-                        </div>
-                        <div class="col-6">
-                            <div class="job-info">
-                                <h3 class="job-title">Software Engineer</h3>   
-                                <p><i class="fas fa-briefcase"></i> Microsoft</p>
-                                <p><i class="far fa-clock"></i> Full Time</p>
-                                <p><i class="fas fa-dollar-sign"></i> 10000$ / month </p>
-                                <p><i class="fas fa-map-marker-alt"></i> Microsoft HQ </p>
-                                <div class="btn-container">
-                                    <a><button class="btn  btn-open-job">View Job</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
                 <a href="{% url 'createjob' %}"><button class="btn  btn-add-job">Add job</button></a>
             </div>
         </div>
@@ -183,12 +124,8 @@
     <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
     <script src="{% static 'js/popper.min.js'%}"></script>
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
-    <script src="{% static 'js/slick.min.js'}"></script>
+    <script src="{% static 'js/slick.min.js'%}"></script>
     <script src="{% static 'js/AntiOverflowFontResizer.min.js'%}"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script> -->
     <script src="{% static 'search.js'%}"></script>
 
 

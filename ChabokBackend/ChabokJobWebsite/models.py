@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User as User_
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 
@@ -21,19 +22,20 @@ class Resume(models.Model):
         return cls.objects.get(id=id)
     
 class Gender(models.IntegerChoices):
-    MALE = 0, _('MALE')
-    FEMALE = 1, _('FEMALE')
+    MALE = 0, _('Male')
+    FEMALE = 1, _('Female')
+    NONE = -1, _('None')
     
 class Role(models.IntegerChoices):
-    EMPLOYER = 0, _('EMPLOYER')
-    JOB_SEEKER = 1, _('JOB_SEEKER')
+    EMPLOYER = 0, _('Employer')
+    JOB_SEEKER = 1, _('Jobseeker')
     
 class Status(models.IntegerChoices):
     REJECTED = -1, _('REJECTED')
     WAITING = 0, _('WAITING')
     ACCEPTED = 1, _('ACCEPTED')
 
-class User(User_):
+class User(AbstractUser):
     role = models.IntegerField(
         choices=Role.choices,
         default=Role.JOB_SEEKER
@@ -44,23 +46,35 @@ class User(User_):
         null=True,
         blank=True
     )
-    age = models.IntegerField(default=None, null=True)
-    image = models.ImageField(upload_to=user_directory_path, default=None, null=True)
-    province = models.CharField(max_length=128, default=None, null=True, blank=True)
-    city = models.CharField(max_length=128, default=None, null=True, blank=True)
+    age = models.IntegerField(default=21, null=True, blank=True)
+    # image = models.ImageField(upload_to=user_directory_path, default=None, null=True)
+    city = models.CharField(max_length=128, default='', null=True, blank=True)
     resume = models.ForeignKey(Resume, on_delete=models.SET_NULL, related_name='user', default=None, null=True)
+    description = models.CharField(max_length=512, default='', null=True, blank=True)
     
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['username','email', 'role']
+    REQUIRED_FIELDS = ['email', 'role']
     
     def __str__(self):
         return self.username
     
+    def get_username(self):
+        return self.username
+    
+    def get_email(self):
+        return self.email
+    
     def get_role(self):
         return Role(int(self.role)).name
     
-    def get_fullname(self):
-        return f"{self.first_name} {self.last_name}"
+    def get_role_id(self):
+        return self.role
+    
+    def get_first_name(self):
+        return self.first_name
+    
+    def get_last_name(self):
+        return self.last_name
     
     def get_gender(self):
         if self.gender != None:
@@ -71,18 +85,18 @@ class User(User_):
         return self.age
     
     def get_image(self):
-        if self.image is not None:
+        if self.image.url is not None:
             return self.image.url
         return None
-    
-    def get_province(self):
-        return self.province
     
     def get_city(self):
         return self.city
     
     def get_resume(self):
         return self.resume
+    
+    def get_description(self):
+        return self.description
         
     @classmethod
     def find_by_id(cls, id):
@@ -98,9 +112,10 @@ class JobOffer(models.Model):
     location = models.CharField(max_length=128)
     type_collabration = models.CharField(max_length=128)
     job_description = models.CharField(max_length=512, null=True, blank=True)
-    reqired_skils = models.CharField(max_length=512, null=True, blank=True)
-    company_description = models.CharField(max_length=512, null=True, blank=True)
+    # reqired_skils = models.CharField(max_length=512, null=True, blank=True)
+    # company_description = models.CharField(max_length=512, null=True, blank=True)
     author = models.ForeignKey(User, related_name='job_offer', on_delete=models.SET_NULL, null=True)
+    salary = models.IntegerField(null=True)
     
     def get_title(self): 
         return self.title
@@ -132,7 +147,7 @@ class JobOffer(models.Model):
     
     @classmethod
     def find_by_user(cls, user):
-        return cls.objects.find(author=user)
+        return cls.objects.filter(author=user)
     
     @classmethod
     def get_all(cls):
