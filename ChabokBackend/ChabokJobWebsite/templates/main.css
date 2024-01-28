@@ -85,7 +85,7 @@
 
 .main-container{
     background-color: var(--gray);
-    height: 2000px;
+    /* height: 2000px; */
     max-width: 1883px;
 
 }
